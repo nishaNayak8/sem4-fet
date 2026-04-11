@@ -5,10 +5,12 @@ ol {
     padding-bottom: 5px;
     background-color: rgb(169, 142, 194);
     width: 300px;
-    
+    margin-left: auto;
+    margin-right: auto;
 }
 
 h1 {
+    text-align: center;
     color: rgb(53, 11, 92);
     text-decoration-line: underline;
     text-decoration-style: solid;
