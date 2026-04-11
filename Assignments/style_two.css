@@ -4,9 +4,9 @@ ol {
     padding-top: 5px;
     padding-bottom: 5px;
     background-color: rgb(169, 142, 194)
+    width : 300px;
 }
 
 h1 {
     color: rgb(53, 11, 92);
-    text-align : center;
 }
