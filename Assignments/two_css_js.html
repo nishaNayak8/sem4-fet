@@ -50,10 +50,12 @@
 
 <script>
 function getList() {
+    debugger; // pauses when this function is called
     return document.getElementById(categorySelect.value);
 }
 
 function addSkill() {
+    debugger; // pause before adding skill
     let val = skillInput.value.trim();
     if (!val) return alert("Enter skill");
 
@@ -67,6 +69,7 @@ function addSkill() {
 }
 
 function removeSkill() {
+    debugger; // pause before removing skill
     let val = skillInput.value.trim().toLowerCase();
     let list = getList();
 
