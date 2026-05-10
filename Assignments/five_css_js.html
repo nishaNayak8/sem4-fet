@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Contact Form</title>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #3b82f6, #06b6d4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            width: 360px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            animation: fadeIn 0.6s ease-in-out;
+        }
+
+        h2 {
+            text-align: center;
+            color: #1e3a8a;
+            margin-bottom: 15px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 8px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            outline: none;
+            transition: 0.3s;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        input:focus, textarea:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 5px rgba(59,130,246,0.5);
+        }
+
+        textarea {
+            resize: none;
+            height: 80px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 12px;
+            background: linear-gradient(135deg, #3b82f6, #06b6d4);
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.03);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .error {
+            color: #dc2626;
+            font-size: 13px;
+            margin-top: 3px;
+        }
+
+        .output {
+            margin-top: 15px;
+            background: #f0f9ff;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 4px solid #3b82f6;
+            font-size: 14px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .attempts {
+            margin-top: 10px;
+            color: #555;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PIN SECTION -->
+    <div class="container" id="pinSection">
+        <h2>Enter Security PIN</h2>
+
+        <input type="password" id="pinInput" placeholder="Enter PIN">
+
+        <div class="error" id="pinError"></div>
+
+        <button id="pinBtn">Unlock</button>
+
+        <div class="attempts" id="attemptsText">
+            Attempts Left: 3
+        </div>
+    </div>
+
+    <!-- FORM SECTION -->
+    <div class="container hidden" id="formSection">
+        <h2>Contact Form</h2>
+
+        <form id="myForm">
+
+            <input type="text" id="name" placeholder="Enter Name">
+            <div class="error" id="nameError"></div>
+
+            <input type="text" id="email" placeholder="Enter Email">
+            <div class="error" id="emailError"></div>
+
+            <textarea id="message" placeholder="Enter Message"></textarea>
+            <div class="error" id="msgError"></div>
+
+            <button type="submit">Submit</button>
+        </form>
+
+        <div class="output" id="output"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
