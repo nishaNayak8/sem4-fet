@@ -1,59 +1,18 @@
-// SECURITY PIN LOGIC
-const correctPin = "1234";
-let attempts = 3;
+document.getElementById("contactForm").addEventListener("submit", function(event) {
 
-const pinBtn = document.getElementById("pinBtn");
-const pinInput = document.getElementById("pinInput");
-const pinError = document.getElementById("pinError");
-const attemptsText = document.getElementById("attemptsText");
+    event.preventDefault();
 
-const pinSection = document.getElementById("pinSection");
-const formSection = document.getElementById("formSection");
-
-pinBtn.addEventListener("click", function () {
-
-    const enteredPin = pinInput.value.trim();
-
-    if (enteredPin === correctPin) {
-
-        pinSection.classList.add("hidden");
-        formSection.classList.remove("hidden");
-
-    } else {
-
-        attempts--;
-
-        if (attempts > 0) {
-            pinError.textContent = "Incorrect PIN!";
-            attemptsText.textContent = `Attempts Left: ${attempts}`;
-        } else {
-
-            pinError.textContent = "System Locked!";
-            attemptsText.textContent = "No Attempts Left";
-
-            pinInput.disabled = true;
-            pinBtn.disabled = true;
-
-            pinBtn.style.background = "gray";
-            pinBtn.style.cursor = "not-allowed";
-        }
-    }
-});
-
-
-// FORM VALIDATION
-document.getElementById("myForm").addEventListener("submit", function (e) {
-
-    e.preventDefault();
-
+    // GET VALUES
     let name = document.getElementById("name").value.trim();
     let email = document.getElementById("email").value.trim();
     let message = document.getElementById("message").value.trim();
 
+    // ERROR ELEMENTS
     let nameError = document.getElementById("nameError");
     let emailError = document.getElementById("emailError");
     let msgError = document.getElementById("msgError");
 
+    // CLEAR PREVIOUS ERRORS
     nameError.textContent = "";
     emailError.textContent = "";
     msgError.textContent = "";
@@ -61,32 +20,38 @@ document.getElementById("myForm").addEventListener("submit", function (e) {
     let isValid = true;
 
     // NAME VALIDATION
-    let namePattern = /^[A-Za-z ]+$/;
-
     if (name === "") {
         nameError.textContent = "Name is required";
         isValid = false;
-    } else if (!namePattern.test(name)) {
-        nameError.textContent = "Only letters allowed";
-        isValid = false;
     }
 
-    // EMAIL VALIDATION
+    // EMAIL VALIDATION USING WHILE LOOP
     let emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+    let checkEmail = true;
 
-    if (email === "") {
-        emailError.textContent = "Email is required";
-        isValid = false;
-    } else if (!emailPattern.test(email)) {
-        emailError.textContent = "Invalid email format";
-        isValid = false;
+    while (checkEmail) {
+
+        if (email === "") {
+            emailError.textContent = "Email is required";
+            isValid = false;
+        } 
+        else if (!emailPattern.test(email)) {
+            emailError.textContent = "Invalid email format";
+            isValid = false;
+        }
+
+        checkEmail = false;
     }
 
-    // MESSAGE VALIDATION
-    if (message.length < 5) {
-        msgError.textContent = "Message must be at least 5 characters";
-        isValid = false;
-    }
+    // MESSAGE VALIDATION USING DO WHILE LOOP
+    do {
+
+        if (message.length < 5) {
+            msgError.textContent = "Message must be at least 5 characters";
+            isValid = false;
+        }
+
+    } while (false);
 
     // DISPLAY OUTPUT
     if (isValid) {
@@ -99,4 +64,72 @@ document.getElementById("myForm").addEventListener("submit", function (e) {
 
         document.getElementById("output").innerHTML = result;
     }
+
+});document.getElementById("contactForm").addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    // GET VALUES
+    let name = document.getElementById("name").value.trim();
+    let email = document.getElementById("email").value.trim();
+    let message = document.getElementById("message").value.trim();
+
+    // ERROR ELEMENTS
+    let nameError = document.getElementById("nameError");
+    let emailError = document.getElementById("emailError");
+    let msgError = document.getElementById("msgError");
+
+    // CLEAR PREVIOUS ERRORS
+    nameError.textContent = "";
+    emailError.textContent = "";
+    msgError.textContent = "";
+
+    let isValid = true;
+
+    // NAME VALIDATION
+    if (name === "") {
+        nameError.textContent = "Name is required";
+        isValid = false;
+    }
+
+    // EMAIL VALIDATION USING WHILE LOOP
+    let emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+    let checkEmail = true;
+
+    while (checkEmail) {
+
+        if (email === "") {
+            emailError.textContent = "Email is required";
+            isValid = false;
+        } 
+        else if (!emailPattern.test(email)) {
+            emailError.textContent = "Invalid email format";
+            isValid = false;
+        }
+
+        checkEmail = false;
+    }
+
+    // MESSAGE VALIDATION USING DO WHILE LOOP
+    do {
+
+        if (message.length < 5) {
+            msgError.textContent = "Message must be at least 5 characters";
+            isValid = false;
+        }
+
+    } while (false);
+
+    // DISPLAY OUTPUT
+    if (isValid) {
+
+        let result = `
+            <strong>Name:</strong> ${name} <br>
+            <strong>Email:</strong> ${email} <br>
+            <strong>Message:</strong> ${message}
+        `;
+
+        document.getElementById("output").innerHTML = result;
+    }
+
 });
